@@ -4,11 +4,77 @@ All URIs are relative to *http://localhost:8000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_get**](DefaultApi.md#get_get) | **GET** /get | Retrieve a list of products
+[**products_delete_delete**](DefaultApi.md#products_delete_delete) | **DELETE** /products/delete | Delete a product by ID or author ID
+[**products_get_get**](DefaultApi.md#products_get_get) | **GET** /products/get | Retrieve a list of products
+[**products_modify_put**](DefaultApi.md#products_modify_put) | **PUT** /products/modify | Modify a product
 
 
-# **get_get**
-> [Product] get_get()
+# **products_delete_delete**
+> products_delete_delete()
+
+Delete a product by ID or author ID
+
+Deletes a product from the database by its ID or author ID.
+
+### Example
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost:8000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "http://localhost:8000"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    product_id = 1 # int | The ID of the product to delete. (optional)
+    author_id = 1 # int | The ID of the author of the product to delete. (optional)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Delete a product by ID or author ID
+        api_instance.products_delete_delete(product_id=product_id, author_id=author_id)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->products_delete_delete: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **product_id** | **int**| The ID of the product to delete. | [optional]
+ **author_id** | **int**| The ID of the author of the product to delete. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The product was successfully deleted. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **products_get_get**
+> [Product] products_get_get()
 
 Retrieve a list of products
 
@@ -45,10 +111,10 @@ with openapi_client.ApiClient() as api_client:
     # and optional values
     try:
         # Retrieve a list of products
-        api_response = api_instance.get_get(sort=sort, param=param, type=type, min_price=min_price, max_price=max_price, author_id=author_id, version=version)
+        api_response = api_instance.products_get_get(sort=sort, param=param, type=type, min_price=min_price, max_price=max_price, author_id=author_id, version=version)
         pprint(api_response)
     except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_get: %s\n" % e)
+        print("Exception when calling DefaultApi->products_get_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -80,6 +146,81 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of products that match the specified criteria. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **products_modify_put**
+> Product products_modify_put(product_id, product_update)
+
+Modify a product
+
+Modify a product with the specified ID.
+
+### Example
+
+```python
+import time
+import openapi_client
+from openapi_client.api import default_api
+from openapi_client.model.product import Product
+from openapi_client.model.product_update import ProductUpdate
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost:8000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "http://localhost:8000"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    product_id = 1 # int | The ID of the product to modify.
+    product_update = ProductUpdate(
+        name="name_example",
+        description="description_example",
+        price=0,
+        product_type="plugin",
+        version="version_example",
+        author_id=1,
+    ) # ProductUpdate | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Modify a product
+        api_response = api_instance.products_modify_put(product_id, product_update)
+        pprint(api_response)
+    except openapi_client.ApiException as e:
+        print("Exception when calling DefaultApi->products_modify_put: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **product_id** | **int**| The ID of the product to modify. |
+ **product_update** | [**ProductUpdate**](ProductUpdate.md)|  |
+
+### Return type
+
+[**Product**](Product.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The modified product. |  -  |
+**400** | Invalid request payload or parameters. |  -  |
+**404** | Product not found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
