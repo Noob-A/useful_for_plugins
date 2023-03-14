@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**products_delete_delete**](DefaultApi.md#products_delete_delete) | **DELETE** /products/delete | Delete a product by ID or author ID
 [**products_get_get**](DefaultApi.md#products_get_get) | **GET** /products/get | Retrieve a list of products
-[**products_modify_put**](DefaultApi.md#products_modify_put) | **PUT** /products/modify | Modify a product
+[**products_put_put**](DefaultApi.md#products_put_put) | **PUT** /products/put | Modify a product
 
 
 # **products_delete_delete**
@@ -149,8 +149,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **products_modify_put**
-> Product products_modify_put(product_id, product_update)
+# **products_put_put**
+> Product products_put_put(product_id, product_update)
 
 Modify a product
 
@@ -189,10 +189,10 @@ with openapi_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Modify a product
-        api_response = api_instance.products_modify_put(product_id, product_update)
+        api_response = api_instance.products_put_put(product_id, product_update)
         pprint(api_response)
     except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->products_modify_put: %s\n" % e)
+        print("Exception when calling DefaultApi->products_put_put: %s\n" % e)
 ```
 
 ### Parameters
